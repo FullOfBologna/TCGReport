@@ -2,6 +2,7 @@ from pdfquery import PDFQuery
 import pandas as pd
 import csv
 import sys
+import datetime
 
 from InventoryParser import InventoryParser
 
@@ -18,9 +19,25 @@ def main():
     totalListed = invReport.get_totalValueListed()
     totalLow = invReport.get_totalValueLow()
 
-    print(f"Market Value: ${totalMarket}")
-    print(f"Listed:       ${totalListed}")
-    print(f"Low Price:    ${totalLow}")
+    now = datetime.datetime.now()
+    nowString = now.strftime("%Y-%m-%d")    
+    
+    reportString = "\n"
+    reportString += "Storefront Inventory Report\n"
+    reportString += nowString + "\n"
+    reportString += "\n"
+    reportString += "==============================\n"
+    reportString += f"Listed Card Value\n"
+    reportString += f"=============================\n"
+    reportString += f"Market Value: ${totalMarket}\n"
+    reportString += f"Listed:       ${totalListed}\n"
+    reportString += f"Low Price:    ${totalLow}\n"
+
+    outputReportName = "InventoryPriceReport_" + nowString + ".txt"
+
+    print(reportString)
+
+    
 
     # print(fields)
 
