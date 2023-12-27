@@ -3,7 +3,7 @@ import pandas as pd
 import csv
 import sys
 
-import InventoryParser from inventory_parser
+import InventoryParser from InventoryParser
 
 def main():
 
