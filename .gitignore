@@ -1,5 +1,6 @@
 Inventory/TCGplayer__MyPricing_*.csv
 Inventory/TCGplayer__MyPricing_*.csv:Zone.Identifier
-__pycache__/InventoryParser.cpython-38.pyc
 PullSheets/TCGplayer_PullSheet_*.csv
 PullSheets/TCGplayer_PullSheet_*.csv:Zone.Identifier
+*.pyc
+*.txt

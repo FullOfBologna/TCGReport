@@ -13,7 +13,8 @@ class InventoryParser:
         self.filename = filename
         self.totalValueListed = 0
         self.totalValueMarket = 0
-        self.avgValue = 0
+        self.totalCards = 0
+        self.avgValuePerCard = 0
         self.productsCount = None
         self.invDF = None
         self.ProductNames = None
@@ -29,10 +30,15 @@ class InventoryParser:
 
         self.invDF = df[df["Total Quantity"] > 0]
 
+        self.totalCards = self.invDF["Total Quantity"].sum()
+
         self.totalValueMarket = self.invDF["TCG Market Price"].mul(self.invDF["Total Quantity"]).sum()
         self.totalValueListed = self.invDF["TCG Marketplace Price"].mul(self.invDF["Total Quantity"]).sum()
         self.totalValueLow = self.invDF["TCG Low Price"].mul(self.invDF["Total Quantity"]).sum()
         
+        self.avgValuePerCard = self.totalValueListed/self.totalCards
+
+
         # self.total
     def get_Fields(self):
         self.columnNames = list(self.invDF.columns)
@@ -47,6 +53,12 @@ class InventoryParser:
     def get_totalValueLow(self):
         return self.totalValueLow
     
+    def get_totalCards(self):
+        return self.totalCards
+        
+    def get_avgValuePerCard(self):
+        return self.avgValuePerCard
+
     def get_ProductNames(self):
         return self.ProductNames
     

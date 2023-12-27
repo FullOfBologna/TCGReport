@@ -1,4 +1,4 @@
-from pdfquery import PDFQuery
+# from pdfquery import PDFQuery
 import pandas as pd
 import csv
 import sys
@@ -18,6 +18,9 @@ def main():
     totalMarket = invReport.get_totalValueMarket()
     totalListed = invReport.get_totalValueListed()
     totalLow = invReport.get_totalValueLow()
+    totalCards = invReport.get_totalCards()
+    avgPerCard = invReport.get_avgValuePerCard()
+
 
     now = datetime.datetime.now()
     nowString = now.strftime("%Y-%m-%d")    
@@ -26,18 +29,26 @@ def main():
     reportString += "Storefront Inventory Report\n"
     reportString += nowString + "\n"
     reportString += "\n"
+    reportString += f"Total Cards Listed: {totalCards}"
+    reportString += "\n"
     reportString += "==============================\n"
     reportString += f"Listed Card Value\n"
     reportString += f"=============================\n"
     reportString += f"Market Value: ${totalMarket}\n"
     reportString += f"Listed:       ${totalListed}\n"
     reportString += f"Low Price:    ${totalLow}\n"
+    reportString += "\n"
+    reportString += f"Average Value Per Card: {avgPerCard}\n"
 
-    outputReportName = "InventoryPriceReport_" + nowString + ".txt"
 
-    print(reportString)
+    outputReportName = "Reports/InventoryPriceReport_" + nowString + ".txt"
 
+    # print(reportString)
+
+    with open(outputReportName,'w') as outputFile: 
+        outputFile.write(reportString)
     
+
 
     # print(fields)
 
